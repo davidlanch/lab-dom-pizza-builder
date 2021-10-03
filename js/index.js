@@ -104,7 +104,8 @@ function renderButtons() {
     document.querySelector('.btn.btn-sauce').classList.add('active');
   } else {
     document.querySelector('.btn.btn-sauce').classList.remove('active');
-  }if (state.glutenFreeCrust) {
+  }
+  if (state.glutenFreeCrust) {
     document.querySelector('.btn.btn-crust').classList.add('active');
   } else {
     document.querySelector('.btn.btn-crust').classList.remove('active');
@@ -113,17 +114,18 @@ function renderButtons() {
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
-  const totalPrice = basePrice;
-  const price = document.querySelector('.price ul');
-  const strong = document.queryCommandIndeterm('.price strong');
+  let totalPrice = basePrice;
+  let price = document.querySelector('.price ul');
+  let strongPrice = document.querySelector('.panel strong');
   price.innerHTML = '';
-
-  if (state.pepperoni){
-    price.innerHTML = `<li></li>`;
-    totalPrice += ingredients.pepperoni.price;
+  
+  for (let key in ingredients){
+    if(state[key]){
+      totalPrice += ingredients[key].price;
+      price.innerHTML += `<li>$${ingredients[key].price} ${key}</li>`
+    }    
   }
-
-
+  strongPrice.textContent = totalPrice;
 }
 
 renderEverything();
