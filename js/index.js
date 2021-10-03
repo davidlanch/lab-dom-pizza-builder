@@ -113,6 +113,17 @@ function renderButtons() {
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+  const totalPrice = basePrice;
+  const price = document.querySelector('.price ul');
+  const strong = document.queryCommandIndeterm('.price strong');
+  price.innerHTML = '';
+
+  if (state.pepperoni){
+    price.innerHTML = `<li></li>`;
+    totalPrice += ingredients.pepperoni.price;
+  }
+
+
 }
 
 renderEverything();
